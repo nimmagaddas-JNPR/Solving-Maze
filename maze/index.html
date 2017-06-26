@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Mazes</title>
+		<link rel='stylesheet' href='css/bootstrap.min.css' />
+		<link rel='stylesheet' href='css/bootstrap-responsive.min.css' />
+		<link rel='stylesheet' href='css/style.css' />
+		<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'></script>
+		<script type="text/javascript">
+		  var _gaq = _gaq || [];
+		  _gaq.push(['_setAccount', 'UA-843113-2']);
+		  _gaq.push(['_trackPageview']);
+
+		  (function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  })();
+
+		</script>
+	</head>
+	<body style="background-color:#FAFD95">		
+		<div class='container' style='margin-left: 30px;'>
+			<h1 style="color:orange;"> Maze Solving Using Different AI Algorithms</h1>
+			<div class="pull-left" style='margin: 0 0 25px 0;'>
+			
+				<div id='customDiv' class='pull-left' style='cursor: pointer; margin: 0 0 0 10px;'>
+					<div class='pull-left'>
+						<i id='customDivIcon' class='icon-plus-sign'></i>
+					</div>
+					<div class='pull-left' style='margin: 0 0 0 5px;'>
+						Build  Maze
+					</div>
+				</div>			
+				<div style='clear: both;'></div>
+
+				
+				
+				<div id='custom' class='well' style='display: none; margin: 8px 0 0 0;'>
+					<p>
+						<div class='pull-left'>
+							<a href='?maze={"start": {"x": 3, "y": 0},	"end": {"x": 6, "y": 0}, "width": 20, "height": 10, "map": "
+	***.**.*************
+	***....*************
+	**..****.........***
+	*..****..*******.***
+	*.****..********...*
+	*.****.***********.*
+	*.****........***..*
+	*.**************..**
+	*................***
+	********************"}'>'G' Maze</a>
+						</div>
+						<div class='pull-left' style='margin: 0 5px 0 5px;'>|</div>
+						<div class='pull-left'>
+							<a href='?maze={"start": {"x": 2, "y": 0},	"end": {"x": 19, "y": 3}, "width": 20, "height": 10, "map": "
+	**.*****************
+	**.****............*
+	**......*****.******
+	**.*********........
+	*..*********.*******
+	**....******.***.***
+	*****......*.***.***
+	**....****.*.....***
+	**.***.....*****...*
+	********************"}'>simple Maze</a>
+						</div>
+						<div class='pull-left' style='margin: 0 5px 0 5px;'>|</div>
+						<div class='pull-left'>
+							<a href='?maze={"start": {"x": 23, "y": 0}, "end": {"x": 22, "y": 19}, "width": 50, "height": 20, "map": "
+	***********************.**************************
+	***********************..*************************
+	************************..************************
+	*************************..***********************
+	**************************..............**********
+	***************************************..*********
+	****************...................*****..********
+	*************....*****************...****..*******
+	**********....****............******..****..******
+	********...****....**********....****....**..*****
+	********.******.*******....*****....****.***..****
+	********.******.....******.....****.****.****..***
+	********...********.....******......****.*****.***
+	**********.....********.....**********...*****.***
+	**************.....********.....***....*****...***
+	******************....*********.....******...*****
+	*********************.....*************....*******
+	**********************.**....*******....**********
+	**********************.*****.........*************
+	**********************.***************************"}'>maze3</a>
+						</div>
+						<div class='pull-left' style='margin: 0 5px 0 5px;'>|</div>
+						<div class='pull-left'>
+							<a href='?maze={"start": {"x": 1, "y": 51}, "end": {"x": 27, "y": 51}, "width": 30, "height": 52, "map": "
+	******************************
+	*******....********....***...*
+	******..**.*******..**..*..***
+	*****..*****..***..****...****
+	*****.**....*..**.*******.****
+	*****.**.**.**.**.*******.****
+	****..**.**.**.**.*******.****
+	****.***.**.**.**.*******...**
+	****.***.**.**.**.*******.*.**
+	****.***.**.**.**.*******.*.**
+	****.***.**.**.**...*****.*.**
+	****.***.**.**.**.*..****.*.**
+	****.***.**.**.**.**.****.*.**
+	****.***.**.**.**.**.****.*.**
+	****.***.**.**.**.**.****.*.**
+	****.***.**.**.**.**.****.*..*
+	****.***.**.**.**.**.****.**.*
+	***..**..**.**.**.**.****.**.*
+	***.***.***.**.**.**.****.**.*
+	***.***.***.**.**.**.****.**.*
+	***.***.***.**....**.****.**.*
+	***.***.***.*****.**.****.**.*
+	***.***.***.**....**..***.****
+	***.***.***.**.**.***.***.**.*
+	***.***.***.**.**.***.***.**.*
+	***.***.***.**.**.***.***.**.*
+	***.***.***.**.**.***.***.**.*
+	***.**..***.**.**.***.***.**.*
+	***.*..****.**.**.***.***.**.*
+	***...*****.**.**.***.***.**.*
+	***.*******.**.**.*******.**.*
+	***.*******.*..**.***.***.**.*
+	***.*******...***.**..***.**.*
+	***.**....*.***.*.**.****.**.*
+	**..**.**.*.***.*.**.****.**.*
+	**.***.**.*.***.*.**.****.**.*
+	**.***.**.*.***.*.**.****.**.*
+	**.***.**.*.***.*.*..****.**.*
+	**.***.**.*.***.*.*.*****.*..*
+	**.***.**.*.***.*.*.*****...**
+	**.***.**.*.***.*.*.*****.****
+	**.***.**.*..*..*.*.*****.****
+	*..***.**.**...**.*.*****.****
+	*.**...**.**.****.*.*****.****
+	*....****.**.****...*****.****
+	*.*******.**.****.*******.****
+	*.*******..*.**.....*****.****
+	*.********.***..***...***..***
+	*.********.*...******...**..**
+	*.......**********************
+	*.*****.....................**
+	*.*************************.**
+	"}'>maze4</a>
+						</div>
+						<div class='pull-left' style='margin: 0 5px 0 5px;'>|</div>
+						<div class='pull-left'>
+							<a href='?maze={"start": {"x": 12, "y": 0}, "end": {"x": 9, "y": 19}, "width": 30, "height": 20, "map":"
+	************.*****************
+	***********..*****************
+	***********.******************
+	*********.....****************
+	*******...****..**************
+	*****...*******...************
+	*****.***.***.***.************
+	*****.***********.************
+	*.***..***...***..************
+	*..***...*****...*******.*****
+	**.*****...**..****......*****
+	**..******.**.****..**********
+	***.****...**...**.***********
+	***.*....******....***********
+	***...************...*********
+	***.****************.*********
+	***..**************..*********
+	****...**********...**********
+	******....*.......************
+	*********.********************
+	"}'>maze5</a>
+						
+				</div>
+
+			</div>
+			
+			<div id='canvasStatus'></div>
+			<div id='canvasDiv' style='float: left;'>
+			  <canvas id='imageView'>
+				
+			  </canvas>		
+			</div>
+			<div style='clear: both;'></div>
+
+			<div style='margin: 25px 0 0 0;'>
+				<div class='pull-left'>
+					<button id='btnGo' class='btn btn-primary btn-large' style="background-color:red">Go!</button>
+				</div>
+				<div class='pull-right' style='margin:7px 0 0 25px;'>
+				<div class='pull-right' style='margin:7px 0 0 25px;'>
+					<div class="btn-group" data-toggle-name="algorithmType" data-toggle="buttons-radio">
+					  <button type="button" value="scripts/tremauxAlgorithm.js" class="btn active" data-toggle="button" style="background-color:pink">Tremaux Algorithm</button>
+					  <button type="button" value="scripts/aStarAlgorithm.js" class="btn" data-toggle="button" style="background-color:lightgreen">A* Search</button>
+					</div>
+					<input type="hidden" id="algorithmType" name="algorithmType" value="scripts/tremauxAlgorithm.js" />
+				</div>
+			</div>
+			<div style='clear: both;'></div>
+			
+			
+			
+			
+		
+		<script type='text/javascript' src='scripts/tremauxAlgorithm.js'></script>
+		<script type='text/javascript' src='scripts/walker.js'></script>
+		<script type='text/javascript' src='scripts/maze.js'></script>
+		<script type='text/javascript' src='scripts/controller.js'></script>
+		<script type='text/javascript' src='scripts/mazes/big.js'></script>		
+		<script type='text/javascript' src='scripts/commonManager.js'></script>
+		<script type='text/javascript' src='scripts/init.js'></script>
+		<script type="text/javascript">var addthis_config = {"data_track_addressbar":false};</script>
+		<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=surfer6"></script>
+		<script type="text/javascript">
+			var disqus_shortname = 'primaryobjects';
+			var disqus_identifier = 'maze';
+			var disqus_url = 'http://www.primaryobjects.com/maze';
+
+			(function() {
+				var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+				dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+				(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+			})();
+		</script>
+	</body>
+</html>
